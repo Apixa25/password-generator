@@ -7,12 +7,27 @@ generateBtn.addEventListener("click", writePassword);
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+    var truePWInfo = getPWInfo(); //this is going to start us with a true or false
 
-  passwordText.value = password;
+
+    if (truePWInfo) {
+        var password = generatePassword();
+        var passwordText = document.querySelector("#password");
+
+        passwordText.value = password;
+    }
 
 }
+
+function generatePassword() {
+    var password = "";
+    for(var i =0; i < howManyChar; i++) {
+        var randomizer = Math.floor(Math.random() * howManyChar.length);
+    }
+}
+
+
+
 // all the possible characters that the password could contain
 var special = ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "}", "{", "[", "]", "|", "/", "?"];
 
@@ -36,23 +51,25 @@ function generatePassword(){
 // this will be where I gather the information I need to make the password
 // the if statment is to force the user to use numbers/not characters and the right PW length
 function getPWInfo(){
+    // this makes it so that the array always starts empty
+    choiceArray = [];
     howManyChar = parseInt(prompt("Choose the number of characters, must be more than 8 and less than 128"));
-    
+
     if(isNaN(howManyChar) || howManyChar < 8 || howManyChar > 128) {
         alert("Must use between 8-128 characters");
         return false;
     }
 
-    if (confirm("Use lower case?")) {
+    if (confirm("Use some lower case?")) {
         choiceArray = choiceArray.concat(lowerCase);
     }
-    if (confirm("Use upper case?")) {
+    if (confirm("How bout some upper case?")) {
         choiceArray = choiceArray.concat(upperCase);
     }
     if (confirm("Sprinkle in some special characters?")) {
         choiceArray = choiceArray.concat(special);
     }
-    if (confirm("How about numbers? Everybody loves some numbers!")) {
+    if (confirm("Any numbers? Everybody loves some numbers!")) {
         choiceArray = choiceArray.concat(numbers);
     }
     return true;
