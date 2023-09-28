@@ -29,14 +29,13 @@ function writePassword() {
         var newPassword = generatePassword();  
         passwordText.value = newPassword;
     } else { 
-        passwordText.value = "You gotta pick one character type";
+        passwordText.value = "You gotta pick at least one character type";
     }
 }
 
 // function getRandom(arr) {
 //     var randIndex = Math.floor(Math.random() * arr.length);
 //     var randElement = arr[randIndex];
-  
 //     return randElement;
 //   }
 
@@ -75,6 +74,10 @@ function getPWInfo(){
     }
     if (confirm("Any numbers? Everybody loves some numbers!")) {
         choiceArray = choiceArray.concat(numbers);
+    }
+    if (isNaN(choiceArray) == 0) {
+        alert("You gotta pick at least 1 character type!");
+        return false;
     }
     return true;
 }
