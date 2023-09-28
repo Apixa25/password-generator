@@ -1,32 +1,3 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
-// Write password to the #password input
-function writePassword() {
-    var truePWInfo = getPWInfo(); //this is going to start us with a true or false
-
-
-    if (truePWInfo) {
-        var password = generatePassword();
-        var passwordText = document.querySelector("#password");
-
-        passwordText.value = password;
-    }
-
-}
-
-function generatePassword() {
-    var password = "";
-    for(var i =0; i < howManyChar; i++) {
-        var randomizer = Math.floor(Math.random() * howManyChar.length);
-    }
-}
-
-
 
 // all the possible characters that the password could contain
 var special = ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "}", "{", "[", "]", "|", "/", "?"];
@@ -43,10 +14,43 @@ var howManyChar = 8;
 var choiceArray = [];
 
 
-// this will be how I generate the password from the gathered information
-function generatePassword(){
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
 
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
+// Write password to the #password input
+function writePassword() {
+    var truePWInfo = getPWInfo(); //this is going to start us with a true or false
+    var passwordText = document.querySelector("#password");
+
+    if (truePWInfo) {
+        var newPassword = generatePassword();  
+        passwordText.value = newPassword;
+    } else { 
+        passwordText.value = "You gotta pick one character type";
+    }
 }
+
+// function getRandom(arr) {
+//     var randIndex = Math.floor(Math.random() * arr.length);
+//     var randElement = arr[randIndex];
+  
+//     return randElement;
+//   }
+
+
+// this is the actual PW generator
+function generatePassword() {
+    var password = "";
+    for(var i = 0; i < howManyChar; i++) {
+        var randomChar = Math.floor(Math.random() * choiceArray.length);
+        password = password + choiceArray[randomChar];
+    }
+    return password;
+}
+
 
 // this will be where I gather the information I need to make the password
 // the if statment is to force the user to use numbers/not characters and the right PW length
